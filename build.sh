@@ -27,7 +27,9 @@ php operationId.php
 # clean up sed backup
 rm ${WORKINGFILE}${SEDBACKUP}
 
-mv ${WORKINGFILE} ${OUTFILE}
+jq . ${WORKINGFILE} > ${OUTFILE}
+
+rm ${WORKINGFILE}
 
 # build Go client
 docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate -i /local/${OUTFILE} -g go -o /local/client/go --package-name loopring
