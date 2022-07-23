@@ -1,4 +1,4 @@
-module github.com/GIT_USER_ID/GIT_REPO_ID
+module github.com/dozyio/loopring-dex-go-client/client/go
 
 go 1.13
 

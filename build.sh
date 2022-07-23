@@ -1,9 +1,11 @@
 #!/bin/bash
 
-INFILE=swagger_en.json
-WORKINGFILE=swagger.temp.json
-OUTFILE=swagger.new.json
+INFILE="swagger_en.json"
+WORKINGFILE="swagger.temp.json"
+OUTFILE="swagger.new.json"
 SEDBACKUP=".bk"
+GITUSERID="dozyio"
+GITREPOID="loopring-dex-go-client/client/go"
 
 export WORKINGFILE
 
@@ -32,5 +34,5 @@ jq . ${WORKINGFILE} > ${OUTFILE}
 rm ${WORKINGFILE}
 
 # build Go client
-docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate -i /local/${OUTFILE} -g go -o /local/client/go --package-name loopring
+docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate -i /local/${OUTFILE} -g go -o /local/client/go --package-name loopring --git-user-id ${GITUSERID} --git-repo-id ${GITREPOID}
 gofmt -w ./client/go
